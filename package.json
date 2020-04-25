@@ -12,6 +12,7 @@
     "@types/node": "13.9.1",
     "@typescript-eslint/eslint-plugin": "2.23.0",
     "@typescript-eslint/parser": "2.23.0",
+    "axios-mock-adapter": "1.18.1",
     "eslint": "6.8.0",
     "eslint-config-prettier": "6.10.0",
     "husky": "4.2.3",
@@ -82,5 +83,8 @@
       "eslint --fix",
       "prettier --write"
     ]
+  },
+  "dependencies": {
+    "axios": "0.19.2"
   }
 }
