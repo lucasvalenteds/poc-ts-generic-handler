@@ -37,13 +37,15 @@ export type Inventory = { [item in Items]: HttpHandler<keyof Handlers> };
 
 export type ItemRequest = { name: string; input: unknown };
 
+export type GenericItemHandler = HttpHandler<any, AxiosInstance>;
+
 export class Salesperson {
   public constructor(
     private inventory: Inventory,
     private httpClient: AxiosInstance
   ) {}
 
-  private isKnownItem(name: string): boolean {
+  private isKnownItem(name: any): name is keyof Inventory {
     const itemFound = Object.keys(this.inventory).find((item) => item === name);
 
     return itemFound !== undefined;
@@ -51,10 +53,9 @@ export class Salesperson {
 
   public async sell(request: ItemRequest): Promise<Item> {
     if (this.isKnownItem(request.name)) {
-      const handler = this.inventory[request.name as Items](this.httpClient);
+      const itemHandler = this.inventory[request.name] as GenericItemHandler;
 
-      // @ts-ignore
-      return await handler(request.input);
+      return await itemHandler(this.httpClient)(request.input);
     }
 
     throw Error("unknown item");
