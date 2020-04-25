@@ -35,7 +35,7 @@ export type Handlers = PenInput | NotebookInput;
 
 export type Inventory = { [item in Items]: HttpHandler<keyof Handlers> };
 
-export type ItemRequest<T> = { name: Items; input: T };
+export type ItemRequest = { name: string; input: unknown };
 
 export class Salesperson {
   public constructor(
@@ -49,9 +49,9 @@ export class Salesperson {
     return itemFound !== undefined;
   }
 
-  public async sell<T>(request: ItemRequest<T>): Promise<Item> {
+  public async sell(request: ItemRequest): Promise<Item> {
     if (this.isKnownItem(request.name)) {
-      const handler = this.inventory[request.name](this.httpClient);
+      const handler = this.inventory[request.name as Items](this.httpClient);
 
       // @ts-ignore
       return await handler(request.input);

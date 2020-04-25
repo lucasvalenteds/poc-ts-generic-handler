@@ -1,14 +1,6 @@
 import Axios, { AxiosInstance } from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
-import {
-  Inventory,
-  penHandler,
-  notebookHandler,
-  Salesperson,
-  Item,
-  PenInput,
-  NotebookInput,
-} from "./";
+import { Inventory, penHandler, notebookHandler, Salesperson, Item } from "./";
 
 const httpClient: AxiosInstance = Axios.create();
 
@@ -36,7 +28,7 @@ test("Selling one black pen", async () => {
 
   const salesperson = new Salesperson(inventory, httpClient);
 
-  const item = await salesperson.sell<PenInput>({
+  const item = await salesperson.sell({
     name: "pen",
     input: {
       color: "black",
@@ -50,7 +42,7 @@ test("Selling one medium book", async () => {
   mock.onPost("/notebook").reply(200, mockNotebook);
   const salesperson = new Salesperson(inventory, httpClient);
 
-  const item = await salesperson.sell<NotebookInput>({
+  const item = await salesperson.sell({
     name: "notebook",
     input: {
       size: 2,
