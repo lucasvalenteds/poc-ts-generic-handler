@@ -58,7 +58,6 @@ test("Selling unknown item throws error", async () => {
 
   try {
     await salesperson.sell({
-      // @ts-ignore
       name: "laptop",
       input: {
         screenSize: 15.6,
