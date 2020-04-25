@@ -8,7 +8,7 @@ export type Handler<I> = (input: I) => Promise<Item>;
 
 export type HttpHandler<I, O = AxiosInstance> = (httpClient: O) => Handler<I>;
 
-export async function requestBody<T>(
+export async function responseBody<T>(
   fn: Promise<AxiosResponse<T>>
 ): Promise<T> {
   return fn.then((response) => response.data);
@@ -19,13 +19,13 @@ export async function requestBody<T>(
 export type PenInput = { color: "black" | "blue" };
 
 export const penHandler: HttpHandler<PenInput> = (httpClient) => (input) =>
-  requestBody(httpClient.post("/pen", input));
+  responseBody(httpClient.post("/pen", input));
 
 export type NotebookInput = { size: number };
 
 export const notebookHandler: HttpHandler<NotebookInput> = (httpClient) => (
   input
-) => requestBody(httpClient.post("/notebook", input));
+) => responseBody(httpClient.post("/notebook", input));
 
 // 3
 
