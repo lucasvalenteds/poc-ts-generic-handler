@@ -35,7 +35,7 @@ export type Handlers = PenInput | NotebookInput;
 
 export type Inventory = { [item in Items]: HttpHandler<keyof Handlers> };
 
-export type ItemRequest = { name: string; input: unknown };
+export type ItemRequest = { name: string; input: any };
 
 export type GenericItemHandler = HttpHandler<any, AxiosInstance>;
 
