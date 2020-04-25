@@ -4,9 +4,9 @@ import { AxiosInstance, AxiosResponse } from "axios";
 
 export type Item = { id: string; description: string };
 
-export type Handler<I> = (input: I) => Promise<Item>;
+export type Handler<T> = (input: T) => Promise<Item>;
 
-export type HttpHandler<I, O = AxiosInstance> = (httpClient: O) => Handler<I>;
+export type HttpHandler<T, U = AxiosInstance> = (httpClient: U) => Handler<T>;
 
 export async function responseBody<T>(
   fn: Promise<AxiosResponse<T>>
