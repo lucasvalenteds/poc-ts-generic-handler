@@ -39,7 +39,7 @@ export type ItemRequest = { name: string; input: unknown };
 
 export type GenericItemHandler = HttpHandler<any, AxiosInstance>;
 
-export class Salesperson {
+export class Store {
   public constructor(
     private inventory: Inventory,
     private httpClient: AxiosInstance
