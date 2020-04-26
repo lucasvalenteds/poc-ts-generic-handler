@@ -1,6 +1,6 @@
 import { AxiosInstance, AxiosResponse } from "axios";
 
-// 1
+// ---
 
 export type Item = { id: string; description: string };
 
@@ -14,7 +14,7 @@ export async function responseBody<T>(
   return fn.then((response) => response.data);
 }
 
-// 2
+// ---
 
 export type PenInput = { color: "black" | "blue" };
 
@@ -27,7 +27,7 @@ export const notebookHandler: HttpHandler<NotebookInput> = (httpClient) => (
   input
 ) => responseBody(httpClient.post("/notebook", input));
 
-// 3
+// ---
 
 export type Items = "pen" | "notebook";
 
